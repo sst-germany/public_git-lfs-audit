@@ -1,7 +1,7 @@
 <Project>
   <!-- DO MODIFY: -->
   <PropertyGroup>
-	  <SstVersion_3dig>1.3.0</SstVersion_3dig>
+	  <SstVersion_3dig>1.3.1</SstVersion_3dig>
 	  <SstVersion_4dig>$(SstVersion_3dig).0</SstVersion_4dig>
 	  <SstProduct>git-lfs-audit</SstProduct>
     <!-- Bsp. <DefineConstants>MY_CONSTANT</DefineConstants> -->

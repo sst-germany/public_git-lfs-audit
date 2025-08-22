@@ -19,10 +19,10 @@ jobs:
         with:
          lfs: true
 
-      # Version: TAG
-      #- name: VERSION.md mit TAG vergleichen.
-      #  if: ${{ github.event_name == 'create' }} # Nur bei Tag ausführen, da wir ja gegen einen Tag prüfen.
-      #  uses: sst-germany/actions_CompareVersionMdWithTag@main
+      # Version: Tag & File
+      - name: VERSION.md mit TAG vergleichen.
+        if: ${{ github.event_name == 'create' }} # Nur bei Tag ausführen, da wir ja gegen einen Tag prüfen.
+        uses: sst-germany/actions_CompareVersionMdWithTag@main
 
       # Setup
       - name: MSBuild (setup path).
@@ -40,7 +40,7 @@ jobs:
           nuget-version: 'latest'
 
       # Restore
-      - name: Restore dependencies
+      - name: Restore
         run: dotnet restore
 
       # Build
@@ -49,21 +49,21 @@ jobs:
 
       # Pack
       - name: Pack
-        run: dotnet pack -c Release --no-build --output .\.nuget  /p:Version=1.1.0-beta
+        run: dotnet pack -c Release --no-build --output .\.nuget
 
-      # Version: Assembly
-      #- name: Assembly-Version mit VERSION.md und TAG vergleichen.
-      #  if: ${{ github.event_name == 'create' }} # Nur bei Tag ausführen, da wir ja gegen einen Tag prüfen.
-      #  id: versioncheck
-      #  uses: sst-germany/actions_CompareAssemblyWithVersionMdAndTag@main
-      #  with:
-      #    assemblypath: ${{ env.Cfg_OutDirectory }}\git-lfs-audit.dll
+      # Version: Tag, File & Assembly
+      - name: Assembly-Version mit VERSION.md und TAG vergleichen.
+        if: ${{ github.event_name == 'create' }} # Nur bei Tag ausführen, da wir ja gegen einen Tag prüfen.
+        id: versioncheck
+        uses: sst-germany/actions_CompareAssemblyWithVersionMdAndTag@main
+        with:
+          assemblypath: ${{ env.Cfg_OutDirectory }}\git-lfs-audit.dll
 
       # NuGet
       - name: Alle NuGet-Pakete auflisten.
         run: Get-ChildItem ".\.nuget"
 
       # Paket auf nuget.org veröffentlichen
-      - name: Publish to NuGet
+      - name: Publish
         run: |
           dotnet nuget push .\.nuget\*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
