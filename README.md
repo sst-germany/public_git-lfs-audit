@@ -1,13 +1,13 @@
-# git-lfs-audit
+ï»¿# git-lfs-audit
 
-**git-lfs-audit** ist ein kleines .NET Tool, das Git-Repositories auf **fehlende oder inkonsistente Git LFS-Einträge** überprüft und den Nutzer darauf hinweist. 
-So stellst du sicher, dass große Dateien korrekt über LFS verwaltet werden.
+**git-lfs-audit** ist ein kleines .NET Tool, das Git-Repositories auf **fehlende oder inkonsistente Git LFS-EintrÃ¤ge** Ã¼berprÃ¼ft und den Nutzer darauf hinweist. 
+So stellst du sicher, dass groÃŸe Dateien korrekt Ã¼ber LFS verwaltet werden.
 
 ---
 
 ## Installation
 
-### Global über .NET Tool
+### Global Ã¼ber .NET Tool
 ```bash
 dotnet tool install --global git-lfs-audit
 ````
@@ -22,40 +22,40 @@ dotnet tool update --global git-lfs-audit
 
 ## Nutzung
 
-Wechsle in das Repository, das du prüfen möchtest, und führe aus:
+Wechsle in das Repository, das du prÃ¼fen mÃ¶chtest, und fÃ¼hre aus:
 
 ```bash
 git-lfs-audit
 ```
 
-Optional kannst du zusätzliche Argumente verwenden:
+Optional kannst du zusÃ¤tzliche Argumente verwenden:
 
 ```bash
 git-lfs-audit --help
 ```
 
-Dies zeigt alle verfügbaren Optionen an, z.B. bestimmte Pfade auszuschließen oder die Ausgabe zu formatieren.
+Dies zeigt alle verfÃ¼gbaren Optionen an, z.B. bestimmte Pfade auszuschlieÃŸen oder die Ausgabe zu formatieren.
 
 ```
-  -d, --directory      Pfad zum Verzeichnis das geprüft werden soll.
+  -d, --directory      Pfad zum Verzeichnis das geprÃ¼ft werden soll.
 
-  -o, --optimze        Optimiert die Prüfung und verwendet eine vordefinierte Liste von Dateiendungen.
+  -o, --optimze        Optimiert die PrÃ¼fung und verwendet eine vordefinierte Liste von Dateiendungen.
 
-  -v, --verbose        Erhöht den Detailgrad der Ausgaben in der Console.
+  -v, --verbose        ErhÃ¶ht den Detailgrad der Ausgaben in der Console.
 
-  --oversize           Die Größe (Bytes) ab welcher eine Datei als problematisch erkannt werden soll.
+  --oversize           Die GrÃ¶ÃŸe (Bytes) ab welcher eine Datei als problematisch erkannt werden soll.
 
-  --checkBytes         Die Anzahl der zu prüfenden Bytes, bei der TEXT Erkennung.
+  --checkBytes         Die Anzahl der zu prÃ¼fenden Bytes, bei der TEXT Erkennung.
 
   --threadCount        Legt die Anzahl der gleichzeitigen Arbeitsthreads fest.
 
-  --simulation         Führt die Prüfung durch, ändert aber keine Daten.
+  --simulation         FÃ¼hrt die PrÃ¼fung durch, Ã¤ndert aber keine Daten.
 
-  --algorithm          [Simple, BomBased (Default)] Gibt den Mechanismus an, mit dem Textdateien und Binärdateien
+  --algorithm          [Simple, BomBased (Default)] Gibt den Mechanismus an, mit dem Textdateien und BinÃ¤rdateien
                        unterschieden werden.
 
-  --extensionpreset    [Simple (Default), UnityProject] Gibt an, welche vordefinierten Dateierweiterungen für die
-                       unterscheidund von Text- und Binärdateien verwendet werden sollen.
+  --extensionpreset    [Simple (Default), UnityProject] Gibt an, welche vordefinierten Dateierweiterungen fÃ¼r die
+                       unterscheidund von Text- und BinÃ¤rdateien verwendet werden sollen.
 
   --help               Display this help screen.
 
@@ -70,13 +70,13 @@ Dieses Projekt ist unter der [MIT License](LICENSE.md) lizenziert.
 
 ---
 
-## Abhängigkeiten
+## AbhÃ¤ngigkeiten
 
 Dieses Projekt nutzt folgende NuGet-Pakete:
 
-* [`CommandLineParser`](https://www.nuget.org/packages/CommandLineParser/) – zur einfachen Definition von CLI-Optionen und Argumenten.
-* [`Microsoft.Extensions.DependencyInjection`](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection/) – für Dependency Injection und Service-Registrierung.
-* [`NLog`](https://www.nuget.org/packages/NLog/) – für Logging und Protokollierung von Meldungen.
+* [`CommandLineParser`](https://www.nuget.org/packages/CommandLineParser/) â€“ zur einfachen Definition von CLI-Optionen und Argumenten.
+* [`Microsoft.Extensions.DependencyInjection`](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection/) â€“ fÃ¼r Dependency Injection und Service-Registrierung.
+* [`NLog`](https://www.nuget.org/packages/NLog/) â€“ fÃ¼r Logging und Protokollierung von Meldungen.
 
 ---
 
