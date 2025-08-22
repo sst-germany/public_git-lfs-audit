@@ -43,7 +43,11 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore
 
-      # Build & Pack
+      # Build
+      - name: Restore dependencies
+        run: dotnet build -c Release 
+
+      # Pack
       - name: Build and Pack
         run: dotnet pack -c Release --no-build --output ./.nupkg  /p:Version=1.1.0-beta
 
