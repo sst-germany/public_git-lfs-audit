@@ -44,12 +44,12 @@ jobs:
         run: dotnet restore
 
       # Build
-      - name: Restore dependencies
+      - name: Build
         run: dotnet build -c Release 
 
       # Pack
-      - name: Build and Pack
-        run: dotnet pack -c Release --no-build --output ./.nupkg  /p:Version=1.1.0-beta
+      - name: Pack
+        run: dotnet pack -c Release --no-build --output ./.nuget  /p:Version=1.1.0-beta
 
       # Version: Assembly
       #- name: Assembly-Version mit VERSION.md und TAG vergleichen.
@@ -66,4 +66,4 @@ jobs:
       # Paket auf nuget.org veröffentlichen
       - name: Publish to NuGet
         run: |
-          dotnet nuget push ./nupkg/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+          dotnet nuget push ./nuget/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
