@@ -49,7 +49,7 @@ jobs:
 
       # Pack
       - name: Pack
-        run: dotnet pack -c Release --no-build --output ./.nuget  /p:Version=1.1.0-beta
+        run: dotnet pack -c Release --no-build --output .\.nuget  /p:Version=1.1.0-beta
 
       # Version: Assembly
       #- name: Assembly-Version mit VERSION.md und TAG vergleichen.
@@ -61,9 +61,9 @@ jobs:
 
       # NuGet
       - name: Alle NuGet-Pakete auflisten.
-        run: Get-ChildItem "./.nuget"
+        run: Get-ChildItem ".\.nuget"
 
       # Paket auf nuget.org veröffentlichen
       - name: Publish to NuGet
         run: |
-          dotnet nuget push ./.nuget/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+          dotnet nuget push .\.nuget\*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
