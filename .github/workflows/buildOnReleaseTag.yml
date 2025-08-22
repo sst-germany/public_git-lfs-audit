@@ -33,6 +33,12 @@ jobs:
         with:
           dotnet-version: 8.0.x  # deine Version
 
+      # NuGet installieren
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1
+        with:
+          nuget-version: 'latest'
+
       # Restore
       - name: Restore dependencies
         run: dotnet restore
@@ -53,10 +59,7 @@ jobs:
       - name: Alle NuGet-Pakete auflisten.
         run: Get-ChildItem "./.nuget"
 
-      # Paket auf NuGet veröffentlichen
-      - name: Push to NuGet
-        uses: NuGet/actions@v2
-        with:
-          api-key: ${{ secrets.NUGET_API_KEY }}   # hier im Repository als Secret hinterlegen
-          packages-to-push: ./.nupkg/*.nupkg
-          source-url: https://api.nuget.org/v3/index.json
+      # Paket auf nuget.org veröffentlichen
+      - name: Publish to NuGet
+        run: |
+          dotnet nuget push ./nupkg/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
