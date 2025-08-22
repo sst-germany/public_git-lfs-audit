@@ -1,0 +1,53 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net8.0</TargetFramework>
+		<RootNamespace>SST.GitLfsAudit</RootNamespace>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<Platforms>AnyCPU</Platforms>
+		<Version>$(SstVersion_4dig)</Version>
+	</PropertyGroup>
+
+	<!-- Package Definitionen -->
+	<PropertyGroup>
+		<PackAsTool>true</PackAsTool>
+		<PackageOutputPath>..\.nuget\</PackageOutputPath>
+		<ToolCommandName>git-lfs-audit</ToolCommandName>
+		<SelfContained>false</SelfContained>
+		<PublishSingleFile>false</PublishSingleFile>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryUrl>https://github.com/sst-germany/public_git-lfs-audit</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/sst-germany/public_git-lfs-audit</PackageProjectUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+	</PropertyGroup>
+	<ItemGroup>
+	  <Compile Remove="Properties\**" />
+	  <EmbeddedResource Remove="Properties\**" />
+	  <None Remove="Properties\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\LICENSE.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="CommandLineParser" Version="2.9.1" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.0-preview.6.25358.103" />
+		<PackageReference Include="NLog" Version="6.0.2" />
+	</ItemGroup>
+	
+</Project>
