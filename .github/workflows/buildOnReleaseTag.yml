@@ -1,0 +1,62 @@
+name: Build OnReleaseTag [releases/v*]
+
+on:
+  workflow_dispatch: # manuell starten
+  create:
+    tags:
+      - 'releases/v*' # wenn ein Tag erstellt wird, der mit folgendem Namen beginnt.
+
+env:
+  Cfg_OutDirectory: ${{ github.workspace }}\git-lfs-audit\bin\Release\net8.0
+                                        
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Repository auschecken.
+        uses: actions/checkout@v4
+        with:
+         lfs: true
+
+      # Version: TAG
+      #- name: VERSION.md mit TAG vergleichen.
+      #  if: ${{ github.event_name == 'create' }} # Nur bei Tag ausführen, da wir ja gegen einen Tag prüfen.
+      #  uses: sst-germany/actions_CompareVersionMdWithTag@main
+
+      # Setup
+      - name: MSBuild (setup path).
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x  # deine Version
+
+      # Restore
+      - name: Restore dependencies
+        run: dotnet restore
+
+      # Build & Pack
+      - name: Build and Pack
+        run: dotnet pack -c Release --no-build --output ./.nupkg  /p:Version=1.1.0-beta
+
+      # Version: Assembly
+      #- name: Assembly-Version mit VERSION.md und TAG vergleichen.
+      #  if: ${{ github.event_name == 'create' }} # Nur bei Tag ausführen, da wir ja gegen einen Tag prüfen.
+      #  id: versioncheck
+      #  uses: sst-germany/actions_CompareAssemblyWithVersionMdAndTag@main
+      #  with:
+      #    assemblypath: ${{ env.Cfg_OutDirectory }}\git-lfs-audit.dll
+
+      # NuGet
+      - name: Alle NuGet-Pakete auflisten.
+        run: Get-ChildItem "./.nuget"
+
+      # Paket auf NuGet veröffentlichen
+      - name: Push to NuGet
+        uses: NuGet/actions@v2
+        with:
+          api-key: ${{ secrets.NUGET_API_KEY }}   # hier im Repository als Secret hinterlegen
+          packages-to-push: ./.nupkg/*.nupkg
+          source-url: https://api.nuget.org/v3/index.json
