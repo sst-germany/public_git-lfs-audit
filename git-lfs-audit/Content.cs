@@ -206,7 +206,7 @@ namespace SST.GitLfsAudit
                             if (_options.Verbose)
                             {
                                 // OK, Tracked, Type
-                                s_log.Warn(" OK | {0} | {1} | {2}",
+                                s_log.Info(" OK | {0} | {1} | {2}",
                                     getTrackedText(fileState.IsTracked),
                                     getFileTypeText(fileState.FileType),
                                     fileState.FileInfo.FullName);
